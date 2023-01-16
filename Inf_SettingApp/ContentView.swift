@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    // 에어플레인 모드 토글의 상태를 저장하는 변수
     @State private var isAirplainModeOn: Bool = false
     
     var body: some View {
@@ -83,7 +83,7 @@ struct ContentView: View {
             .navigationTitle(Text("설정"))
         }
     }
-    
+    /// 사용자 이름, 프로필 이미지를 표시하는 셀. 현재는 임의의 이미지와 이름으로 고정됨.
     @ViewBuilder
     private func profileCell() -> some View {
         HStack {
@@ -106,7 +106,9 @@ struct ContentView: View {
         }
         .padding(.vertical, 10)
     }
-    
+    /// 각 셀에 들어갈 아이콘의 이미지, 색을 정합니다.
+    /// - Parameter imageName: 아이콘의 이미지 이름(SF symbols)
+    /// - Parameter iconColor: 아이콘의 색상
     @ViewBuilder
     private func iconImage(imageName: String, iconColor: Color) -> some View {
         Image(systemName: imageName)
@@ -118,7 +120,11 @@ struct ContentView: View {
             .foregroundColor(.white)
             .cornerRadius(6)
     }
-    
+    /// 토글로 해당 기능의 on/off를 표시하는 셀. 현재는 아무 기능 없음.
+    /// - Parameter imageName: 아이콘의 이미지 이름(SF symbols)
+    /// - Parameter iconColor: 아이콘의 색상
+    /// - Parameter cellTitle: 기능의 이름
+    /// - Parameter isOn: 토글의 on/off 상태
     @ViewBuilder
     private func toggleCell(imageName: String, iconColor: Color, cellTitle: String, isOn: Binding<Bool>) -> some View {
         HStack {
@@ -126,7 +132,12 @@ struct ContentView: View {
             Toggle(cellTitle, isOn: isOn)
         }
     }
-
+    /// 해당 기능의 세부 설정을 할 수 있는 뷰로 이동하는 셀. 현재는 세부 설정 뷰 없음.
+    /// - Parameter imageName: 아이콘의 이미지 이름(SF symbols)
+    /// - Parameter iconColor: 아이콘의 색상
+    /// - Parameter cellTitle: 기능의 이름
+    /// - Parameter subtitle: 셀의 오른쪽에 회색으로 표시할 텍스트
+    /// - Parameter destination: 이동할 뷰
     @ViewBuilder
     private func navigationLinkCell<V: View>(imageName: String, iconColor: Color, cellTitle: String, subtitle: String? = nil, destination: @escaping () -> V) -> some View {
         HStack {
